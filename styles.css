@@ -1,0 +1,69 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+.calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgb(148, 148, 148);
+    
+}    
+.container {
+    display: grid;
+    /* margin-top: 2em; */
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(6, 120px);
+    justify-content: center;
+    align-items: space-evenly;
+    background-color: rgb(148, 148, 148);
+}
+
+.container .span{
+    grid-column: span 2;
+}
+
+.display {
+    grid-column: span 4;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.current_input {
+    font-size: 2rem;
+    margin-top: -40px
+}
+
+.previous_input { 
+    font-size: 1.5rem;
+    color: #bebebe;
+}
+
+.container button:hover {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    background-color: rgb(148, 148, 148);
+}
+
+.container button {
+    font-size: 1.5rem;
+    border: 1px solid white;
+    transition: all .7s all; 
+}
+
+.equal {
+    border-bottom-right-radius: 15px;
+}
+
+.zero {
+    border-bottom-left-radius: 15px;
+}
