@@ -61,7 +61,6 @@ const workButtons = () => {
             return
         } else if(currDispVal < 0){
             let temp = currentInputDiv.textContent.substring(1)
-            console.log(temp)
             currentInputDiv.textContent = temp
             currDispVal = currentInputDiv.textContent
         } else if(currDispVal > 0){
@@ -83,17 +82,14 @@ const operate = () => {
     : operation === '÷' && num2 === 0 ? result = "You can't do that, dummy."
     : operation === '÷' ? result = num1 / num2
     : ''
-    console.log(result)
     currDispVal = result
     prevDispVal = ''
     operation = undefined
 }
 
 const calcResult = () => {
-    console.log('calcR')
     if(currDispVal === '') return 
     if(prevDispVal !== '') {
-        console.log('made it')
         operate()
     }
     prevDispVal = `${currDispVal} ${operation}`
