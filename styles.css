@@ -50,8 +50,7 @@ body {
 .container button:hover {
     border: none;
     outline: none;
-    border-radius: 15px;
-    background-color: rgb(148, 148, 148);
+    background-color: hsl(0, 15%, 72%);
 }
 
 .container button {
@@ -66,4 +65,15 @@ body {
 
 .zero {
     border-bottom-left-radius: 15px;
+}
+
+.clear,
+.delete,
+.posneg {
+    background-color: #fad8a5;
+}
+
+.operator,
+.equal {
+    background-color: hsl(207, 56%, 88%);
 }
