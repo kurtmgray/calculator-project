@@ -7,7 +7,6 @@ const currentInputDiv = document.querySelector('.ci')
 const previousInputDiv = document.querySelector('.pi')
 const posNeg = document.querySelector('.posNeg')
 
-
 let operation = undefined
 let currDispVal = 0
 let prevDispVal = ''
@@ -37,7 +36,13 @@ const workButtons = () => {
         if(str != null && str.length > 0){
             str = str.substring(0, str.length - 1, )
             currentInputDiv.textContent = str
-        }    
+            currDispVal = currentInputDiv.textContent
+        }
+        if(currDispVal === ''){
+            currDispVal = '0'
+            updateDisplay()
+        }
+          
     })
     operatorButtons.forEach(button => {
         button.addEventListener('click', e => {
@@ -66,6 +71,50 @@ const workButtons = () => {
         } else if(currDispVal > 0){
             currentInputDiv.textContent = `-${currDispVal}`
             currDispVal = currentInputDiv.textContent
+        }
+    })
+    window.addEventListener('keyup', e => {
+        if(currDispVal === '0' || currDispVal === 0){
+            currDispVal = ''
+        }    
+        if(e.key == '*' || e.key == '+' || e.key == '-' || e.key == '/'){
+            if(currDispVal && prevDispVal){
+                operate()
+                prevDispVal = currDispVal
+                currDispVal = ''
+                return
+            }
+            operation = e.key
+            calcResult()
+            updateDisplay()
+        }
+        if(e.key >= 0 && e.key <= '9'){
+            currDispVal += e.key
+            updateDisplay()
+        }
+        if(e.key === '=' || e.key === 'Enter'){
+            operate()
+            updateDisplay()
+        }
+        if(e.key === 'Backspace'){
+            let str = currentInputDiv.textContent
+            if(str != null && str.length > 0){
+                str = str.substring(0, str.length - 1, )
+                currentInputDiv.textContent = str
+                currDispVal = currentInputDiv.textContent
+            }
+            if(currDispVal === ''){
+                currDispVal = '0'
+                updateDisplay()
+            }
+        }     
+        if(e.key === 'Escape'){  
+            (operation) = ''
+                currDispVal = 0
+                prevDispVal = ''
+                num1 = ''
+                num2 = ''
+                updateDisplay()   
         }
     })
 }
@@ -100,16 +149,3 @@ const updateDisplay = () => {
     currentInputDiv.textContent = currDispVal
     previousInputDiv.textContent = prevDispVal
 }
-
-
-// //keyboard listener
-// window.addEventListener('keyup', e => {
-//     if(e.keyCode >= 48 && e.keyCode <= 57){
-//         let numKey = e.keyCode
-//         currentInputDiv.append(Number(e.key))
-//         currDispVal = currentInputDiv.textContent
-//     //} else if(//operators){
-//         //do something
-//     }
-//     //console.log(e)
-// })
