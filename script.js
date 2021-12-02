@@ -26,12 +26,11 @@ const workButtons = () => {
     })
     clearButton.addEventListener('click', () => {
         (operation) = ''
-            currDispVal = '0' 
+            currDispVal = 0
             prevDispVal = ''
             num1 = ''
             num2 = ''
-            currentInputDiv.textContent = ''
-            previousInputDiv.textContent =  ''
+            updateDisplay()
     })
     deleteButton.addEventListener('click', () => {
         let str = currentInputDiv.textContent
@@ -43,6 +42,11 @@ const workButtons = () => {
     operatorButtons.forEach(button => {
         button.addEventListener('click', e => {
             if(currDispVal === '') return
+            if(currDispVal && prevDispVal){
+                operate()
+                prevDispVal = currDispVal
+                currDispVal = ''
+            }
             operation = e.target.textContent
             calcResult()
             updateDisplay()
@@ -56,7 +60,9 @@ const workButtons = () => {
         if(currDispVal === 0){
             return
         } else if(currDispVal < 0){
-            currentInputDiv.textContent.substring(1)
+            let temp = currentInputDiv.textContent.substring(1)
+            console.log(temp)
+            currentInputDiv.textContent = temp
             currDispVal = currentInputDiv.textContent
         } else if(currDispVal > 0){
             currentInputDiv.textContent = `-${currDispVal}`
