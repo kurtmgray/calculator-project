@@ -60,7 +60,6 @@ const workButtons = () => {
         }) 
     })
     equalsButton.addEventListener('click', () => {
-        if(prevDispVal = '') return
         operate()
         updateDisplay()
         dispLock = 1
@@ -100,7 +99,6 @@ const workButtons = () => {
             updateDisplay()
         }
         if(e.key === '=' || e.key === 'Enter'){
-            if(prevDispVal = '') return
             operate()
             updateDisplay()
         }
@@ -144,7 +142,9 @@ const operate = () => {
 
 const calcResult = () => {
     if(currDispVal === '') return 
-    if(prevDispVal !== '') operate()
+    if(prevDispVal !== '') {
+        operate()
+    }
     prevDispVal = `${currDispVal} ${operation}`
     currDispVal = ''
 }
