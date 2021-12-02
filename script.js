@@ -30,14 +30,12 @@ const workButtons = () => {
             dispLock = 0
             currDispVal = 0
             prevDispVal = ''
-            // num1 = ''
-            // num2 = ''
             updateDisplay()
     })
     deleteButton.addEventListener('click', () => {
         let str = currentInputDiv.textContent
         if(str != null && str.length > 0){
-            str = str.substring(0, str.length - 1, )
+            str = str.substring(0, str.length - 1)
             currentInputDiv.textContent = str
             currDispVal = currentInputDiv.textContent
         }
@@ -45,8 +43,7 @@ const workButtons = () => {
             currDispVal = '0'
             dispLock = 0
             updateDisplay()
-        }
-          
+        } 
     })
     operatorButtons.forEach(button => {
         button.addEventListener('click', e => {
@@ -63,6 +60,7 @@ const workButtons = () => {
         }) 
     })
     equalsButton.addEventListener('click', () => {
+        if(prevDispVal = '') return
         operate()
         updateDisplay()
         dispLock = 1
@@ -79,6 +77,7 @@ const workButtons = () => {
             currDispVal = currentInputDiv.textContent
         }
     })
+    // keyboard support
     window.addEventListener('keyup', e => {
         if(currDispVal === '0' || currDispVal === 0){
             currDispVal = ''
@@ -101,6 +100,7 @@ const workButtons = () => {
             updateDisplay()
         }
         if(e.key === '=' || e.key === 'Enter'){
+            if(prevDispVal = '') return
             operate()
             updateDisplay()
         }
@@ -122,8 +122,6 @@ const workButtons = () => {
                 dispLock = 0
                 currDispVal = 0
                 prevDispVal = ''
-                num1 = ''
-                num2 = ''
                 updateDisplay()   
         }
     })
@@ -132,9 +130,7 @@ workButtons()
  
 const operate = () => {
     let num1 = parseFloat(prevDispVal)
-    console.log(num1)
     let num2 = parseFloat(currDispVal)
-    console.log(operation)
     operation === '*' ? result = num1 * num2
     : operation === '+' ? result = num1 + num2
     : operation === '-' ? result = num1 - num2
@@ -148,9 +144,7 @@ const operate = () => {
 
 const calcResult = () => {
     if(currDispVal === '') return 
-    if(prevDispVal !== '') {
-        operate()
-    }
+    if(prevDispVal !== '') operate()
     prevDispVal = `${currDispVal} ${operation}`
     currDispVal = ''
 }
